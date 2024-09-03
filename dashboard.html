@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #24341F;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .dashboard-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input[type="text"],
+        input[type="date"],
+        textarea {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        textarea:focus {
+            border-color: #24341F; /* Verde oscuro */
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        input[type="file"] {
+            margin-bottom: 15px;
+        }
+        button[type="submit"] {
+            padding: 10px;
+            background-color: #24341F; /* Verde oscuro */
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #1b2a16;
+        }
+        #success-message {
+            display: none;
+            color: green;
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .article-list {
+            margin-top: 30px;
+        }
+        .article-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            background: #f9f9f9;
+            position: relative;
+        }
+        .article-item .buttons {
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
+        }
+        .article-item button {
+            margin-bottom: 10px;
+            background-color: #f44336; /* Rojo para eliminar */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+        }
+        .article-item button.edit {
+            background-color: #4CAF50; /* Verde para editar */
+        }
+        .article-item button:hover {
+            opacity: 0.8;
+        }
+        .article-item button.edit:hover {
+            background-color: #45a049;
+        }
+        .corner-image {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 100px;
+            height: auto;
+            z-index: 1000;
+        }
+        .divider {
+            margin: 30px 0;
+            height: 10px;
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Publicar Nuevo Artículo</h1>
+        <form id="articleForm">
+            <input type="text" id="title" placeholder="Título del artículo" required>
+            <input type="text" id="author" placeholder="Nombre del Autor" required>
+            <input type="date" id="date" required>
+            <textarea id="content" placeholder="Contenido del artículo" required></textarea>
+            <input type="file" id="image" accept="image/*" required>
+            <button type="submit">Publicar Artículo</button>
+            <p id="success-message">¡Artículo publicado con éxito!</p>
+        </form>
+        
+        <div class="divider"></div>
+        
+        <div class="article-list">
+            <h2>Artículos Publicados</h2>
+            <!-- Aquí se llenarán los artículos con JavaScript -->
+        </div>
+    </div>
+
+    <img src="logoadic2.png" alt="Imagen de esquina" class="corner-image">
+
+    <script>
+        let editingIndex = null; // Variable global para el índice del artículo que se está editando
+
+        document.getElementById('articleForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const title = document.getElementById('title').value;
+            const author = document.getElementById('author').value;
+            const date = document.getElementById('date').value;
+            const content = document.getElementById('content').value;
+            const image = document.getElementById('image').files[0];
+
+            const reader = new FileReader();
+            reader.onload = function() {
+                const imageDataUrl = reader.result;
+                const articleData = { title, author, date, content, image: imageDataUrl };
+
+                let articles = JSON.parse(localStorage.getItem('articles')) || [];
+
+                if (editingIndex !== null) {
+                    // Editar artículo existente
+                    articles[editingIndex] = articleData;
+                    editingIndex = null; // Resetear índice de edición
+                } else {
+                    // Agregar nuevo artículo
+                    articles.push(articleData);
+                }
+
+                localStorage.setItem('articles', JSON.stringify(articles));
+
+                document.getElementById('success-message').style.display = 'block';
+
+                setTimeout(() => {
+                    window.location.href = 'articulos.html'; // Redirigir a la sección de artículos
+                }, 2000);
+            };
+            reader.readAsDataURL(image);
+        });
+
+        function displayArticles() {
+            const articles = JSON.parse(localStorage.getItem('articles')) || [];
+            const articleList = document.querySelector('.article-list');
+            articleList.innerHTML = '<h2>Artículos Publicados</h2>'; // Resetear el contenido
+
+            articles.forEach((article, index) => {
+                const articleItem = document.createElement('div');
+                articleItem.className = 'article-item';
+
+                articleItem.innerHTML = `
+                    <div style="flex: 1;">
+                        <strong>${article.title}</strong><br>
+                        <small>${article.author} - ${article.date}</small><br>
+                        <p>${article.content}</p>
+                        <img src="${article.image}" alt="Imagen del artículo" style="max-width: 100px;">
+                    </div>
+                    <div class="buttons">
+                        <button class="edit" onclick="editArticle(${index})">Editar</button>
+                        <button onclick="deleteArticle(${index})">Eliminar</button>
+                    </div>
+                `;
+                articleList.appendChild(articleItem);
+            });
+        }
+
+        function editArticle(index) {
+            const articles = JSON.parse(localStorage.getItem('articles')) || [];
+            const article = articles[index];
+
+            document.getElementById('title').value = article.title;
+            document.getElementById('author').value = article.author;
+            document.getElementById('date').value = article.date;
+            document.getElementById('content').value = article.content;
+            document.getElementById('image').value = ''; // No se puede previsualizar el archivo
+            document.querySelector('button[type="submit"]').textContent = 'Actualizar Artículo';
+
+            editingIndex = index; // Establecer el índice del artículo a editar
+        }
+
+        function deleteArticle(index) {
+            if (confirm('¿Estás seguro de que quieres eliminar este artículo?')) {
+                const articles = JSON.parse(localStorage.getItem('articles')) || [];
+                articles.splice(index, 1);
+                localStorage.setItem('articles', JSON.stringify(articles));
+                displayArticles(); // Actualizar la lista de artículos
+            }
+        }
+
+        // Cargar los artículos al iniciar
+        displayArticles();
+    </script>
+</body>
+</html>
+
+

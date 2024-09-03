@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            background-color: #000000; /* Fondo negro */
+            color: #ffffff; /* Texto blanco */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #000000; /* Fondo negro */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-image {
+            margin-right: 20px;
+        }
+
+        .header-image img {
+            width: 200px; /* Ajusta el tamaño de la imagen */
+            height: auto;
+            border-radius: 10px; /* Bordes redondeados */
+        }
+
+        .login-container {
+            background-color: #24341F; /* Verde oscuro */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .login-container h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #333333; /* Color del campo de entrada */
+            color: #ffffff;
+        }
+
+        .login-container input::placeholder {
+            color: #bbbbbb;
+        }
+
+        .login-container button {
+            width: auto; /* Ajusta el ancho del botón */
+            padding: 10px 20px; /* Ajusta el relleno del botón */
+            border: none;
+            border-radius: 5px;
+            background-color: #7dd856; /* Verde Claro */
+            color: #000000;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-block; /* Hace que el botón se ajuste a su contenido */
+        }
+
+        .login-container button:hover {
+            background-color: #d19415; /* Sombreado para hover */
+        }
+
+        .login-container p.error {
+            color: #ff4d4d; /* Rojo para mensajes de error */
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="header-image">
+            <img src="logonegro.png" alt="Imagen de la cabecera">
+        </div>
+        <div class="login-container">
+            <h1>Portal del Equipo</h1>
+            <form id="loginForm">
+                <input type="text" id="username" placeholder="Usuario" required>
+                <input type="password" id="password" placeholder="Contraseña" required>
+                <button type="submit">Acceder</button>
+                <p id="error-message" class="error" style="display:none;">Usuario o contraseña incorrectos.</p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const correctUsername = "ADIC2024";
+            const correctPassword = "ADIC2024PERU";
+
+            if (username === correctUsername && password === correctPassword) {
+                window.location.href = "dashboard.html";  // Redirige al panel de administración
+            } else {
+                document.getElementById('error-message').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

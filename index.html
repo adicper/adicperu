@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - ADIC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            line-height: 1.6;
+            background-color: #E1D3BC; /* Fondo crema claro */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Asegura que el contenido llene toda la ventana */
+        }
+        header {
+            background-color: #24341F; /* Verde oscuro */
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Centrar el contenido */
+            text-align: center;
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Centrar la imagen */
+            width: 100%;
+        }
+        .header-content img {
+            max-height: 80px; /* Ajusta el tamaño de la imagen */
+        }
+        nav {
+            background-color: #000000;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #FFF;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            flex: 1; /* Hace que el contenido llene el espacio restante */
+            padding: 20px;
+        }
+        footer {
+            background-color: #000000;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            .menu-btn {
+                background-color: #24341F;
+                color: #fff;
+                padding: 10px;
+                text-align: center;
+                font-size: 20px;
+                cursor: pointer;
+                display: block;
+            }
+            nav {
+                display: none;
+                text-align: left;
+                padding: 15px;
+            }
+            nav.active {
+                display: block;
+            }
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .menu-btn {
+                display: none;
+            }
+            nav {
+                display: block;
+            }
+            nav a {
+                display: inline-block;
+                margin: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <!-- Imagen del encabezado centrada -->
+            <img src="logoadic2.png" alt="Logo de ADIC">
+        </div>
+    </header>
+
+    <!-- Botón de menú para móviles -->
+    <div class="menu-btn" onclick="toggleMenu()">☰ Menú</div>
+
+    <nav id="menu">
+        <a href="index.html">Inicio</a>
+        <a href="articulos.html">Artículos</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="login.html">Login</a>
+    </nav>
+    
+    <div class="content">
+        <!-- Aquí va el contenido específico de cada página -->
+
+
+<section class="intro-section">
+    <div class="container">
+        <div class="content-box">
+            <h2 class="custom-title">Inicio</h2>
+            <p class="custom-text">
+                Académicos para el Desarrollo, Innovación y Conocimiento (ADIC) es un espacio dedicado a la publicación de artículos académicos de opinión e investigación que exploran el conocimiento contemporáneo. Nuestro objetivo es informar con claridad y rigor, ofreciendo contenido relevante y especializado para aquellos que buscan entender y aportar a los avances del mundo actual.
+            </p>
+        </div>
+    </div>
+</section>
+
+<?php include 'footer.php'; ?>
+
+<style>
+    /* Ajustes básicos */
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .intro-section {
+        padding: 20px 0;
+        text-align: center;
+        background-color: #000000;
+    }
+
+    .content-box {
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: justify;
+    }
+
+    /* Estilo personalizable del título */
+    .custom-title {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: var(--title-size, 28px); /* Tamaño editable del título */
+        color: var(--title-color, #7dd856); /* Color editable del título */
+    }
+
+    /* Estilo personalizable del texto */
+    .custom-text {
+        padding: 20px;
+        margin: 0;
+        font-size: var(--text-size, 21px); /* Tamaño editable del texto */
+        color: var(--text-color, #ffffff); /* Color editable del texto */
+    }
+</style>
+
+   <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <!-- Aquí va el contenido principal de tu página -->
+        <p> </p>
+        <p> </p>
+        <p> </p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 ADIC. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+            menu.classList.toggle("active");
+        }
+    </script>
+</body>
+</html>

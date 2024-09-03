@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - ADIC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            line-height: 1.6;
+            background-color: #E1D3BC; /* Fondo crema claro */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Asegura que el contenido llene toda la ventana */
+        }
+        header {
+            background-color: #24341F; /* Verde oscuro */
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Centrar el contenido */
+            text-align: center;
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Centrar la imagen */
+            width: 100%;
+        }
+        .header-content img {
+            max-height: 80px; /* Ajusta el tamaño de la imagen */
+        }
+        nav {
+            background-color: #000000;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #FFF;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            flex: 1; /* Hace que el contenido llene el espacio restante */
+            padding: 20px;
+        }
+        footer {
+            background-color: #000000;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            .menu-btn {
+                background-color: #24341F;
+                color: #fff;
+                padding: 10px;
+                text-align: center;
+                font-size: 20px;
+                cursor: pointer;
+                display: block;
+            }
+            nav {
+                display: none;
+                text-align: left;
+                padding: 15px;
+            }
+            nav.active {
+                display: block;
+            }
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .menu-btn {
+                display: none;
+            }
+            nav {
+                display: block;
+            }
+            nav a {
+                display: inline-block;
+                margin: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <!-- Imagen del encabezado centrada -->
+            <img src="logoadic2.png" alt="Logo de ADIC">
+        </div>
+    </header>
+
+    <!-- Botón de menú para móviles -->
+    <div class="menu-btn" onclick="toggleMenu()">☰ Menú</div>
+
+    <nav id="menu">
+        <a href="index.html">Inicio</a>
+        <a href="articulos.html">Artículos</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="login.html">Login</a>
+    </nav>
+    
+    <div class="content">
+        <!-- Aquí va el contenido específico de cada página -->
+<section class="intro-section">
+    <div class="container">
+        <div class="content-box">
+            <h2>Contacto</h2>
+            <p>
+                Si deseas colaborar con nosotros, sugerir temas, o simplemente conocer más sobre nuestro trabajo, te invitamos a llenar nuestro formulario de contacto. Además, puedes seguirnos en nuestra cuenta de Instagram para estar al tanto de nuestras últimas publicaciones y novedades.
+            </p>
+            
+            <!-- Redes Sociales -->
+            <div class="social-icons">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUY-koT4Kblp5Wo91TrptDpHKK8C9_fq6XD8kPD8kwQNJrtA/viewform?usp=sf_link" target="_blank">
+                    <img src="forms.png" alt="Forms">
+                </a>
+                <a href="https://www.instagram.com/adic.pe/" target="_blank">
+                    <img src="instagram.png" alt="Instagram">
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<?php include 'footer.php'; ?>
+
+<style>
+    /* Ajustes básicos */
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .intro-section {
+        padding: 20px 0;
+        text-align: center;
+        background-color: #f8f8f8;
+    }
+
+    .content-box p {
+        padding: 20px;
+        text-align: justify; /* Justificar el texto */
+        margin: 0 auto; /* Centrar horizontalmente */
+        max-width: 600px; /* Limitar el ancho para mejor lectura */
+    }
+
+    .social-icons {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .social-icons a img {
+        width: 40px;
+        transition: transform 0.3s, filter 0.3s;
+    }
+
+    .social-icons a img:hover {
+        transform: scale(1.2);
+        filter: brightness(0.8);
+    }
+
+    .intro-section h2 {
+        color: #000000;
+        margin-bottom: 10px;
+    }
+
+</style>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <!-- Aquí va el contenido principal de tu página -->
+        <p> </p>
+        <p> </p>
+        <p> </p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 ADIC. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+            menu.classList.toggle("active");
+        }
+    </script>
+</body>
+</html>
