@@ -138,7 +138,7 @@
         // Crear enlaces para cada artículo
         articles.forEach((article, index) => {
             const articleLink = document.createElement('a');
-            articleLink.href = `ver-articulo.php?index=${index}`;
+            articleLink.href = `ver-articulo.html?index=${index}`;
             articleLink.textContent = article.title;
             articlesList.appendChild(articleLink);
             articlesList.appendChild(document.createElement('br'));
@@ -148,7 +148,6 @@
     }
 </script>
 
-<?php include 'footer.php'; ?>
 
 <style>
     /* Estilos básicos */
